@@ -75,12 +75,14 @@ func resolve(binary string, versionRequirement string) {
 		objects, err := listS3Objects("heroku-nodebin", "us-east-1", "node")
 		fmt.Fprintln(os.Stderr, "S3 Objects:", len(objects))
 		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
 			fmt.Println(err)
 			os.Exit(1)
 		}
 		result, err := resolveNode(objects, getPlatform(), versionRequirement)
 		fmt.Fprintln(os.Stderr, "Resolve Result:", result)
 		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
 			fmt.Println(err)
 			os.Exit(1)
 		}
