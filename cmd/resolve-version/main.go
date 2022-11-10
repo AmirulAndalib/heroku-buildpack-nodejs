@@ -77,11 +77,13 @@ func resolve(binary string, versionRequirement string) {
 			fmt.Println(err)
 			os.Exit(1)
 		}
+		fmt.Fprintln(os.Stderr, "Objects:", len(objects))
 		result, err := resolveNode(objects, getPlatform(), versionRequirement)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
 		}
+		fmt.Fprintln(os.Stderr, "Result:", result)
 		if result.matched {
 			fmt.Printf("%s %s\n", result.release.version.String(), result.release.url)
 		} else {

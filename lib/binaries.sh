@@ -30,10 +30,14 @@ resolve() {
       return 0
     # don't retry if we get a negative result
     elif [[ $output = "No result" ]]; then
+      echo "No result output: $output"
       return 1
     elif [[ $output == "Could not parse"* ]] || [[ $output == "Could not get"* ]]; then
+      echo "Could not output: $output"
+      echo "$output"
       return 1
     else
+      echo "Retry output: $output"
       n=$((n+1))
       # break for a second with a linear backoff
       sleep $((n+1))

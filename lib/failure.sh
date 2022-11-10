@@ -228,6 +228,7 @@ fail_bin_install() {
 
   # re-request the result, saving off the reason for the failure this time
   error=$($RESOLVE "$bin" "$version")
+  echo "Error output: $error"
 
   # re-enable trapping
   set -e
