@@ -26,18 +26,18 @@ resolve() {
       meta_set "resolve-is-equal-$binary" "$resolve_is_equal"
       meta_set "resolve-v2-error" "$STD_ERR"
 
+      echo "'Success' output: $output" 1>&2
       echo "$output"
       return 0
     # don't retry if we get a negative result
     elif [[ $output = "No result" ]]; then
-      echo "No result output: $output"
+      echo "'No result' output: $output" 1>&2
       return 1
     elif [[ $output == "Could not parse"* ]] || [[ $output == "Could not get"* ]]; then
-      echo "Could not output: $output"
-      echo "$output"
+      echo "'Could not' output: $output" 1>&2
       return 1
     else
-      echo "Retry output: $output"
+      echo "'Retry' output: $output" 1>&2
       n=$((n+1))
       # break for a second with a linear backoff
       sleep $((n+1))
